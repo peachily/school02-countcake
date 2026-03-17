@@ -1,0 +1,610 @@
+:root {
+  --bg-ink: #281915;
+  --cream: #fff6e8;
+  --butter: #ffe8b0;
+  --brown: #6f4635;
+  --brown-deep: #3e241c;
+  --pink: #f36d95;
+  --banana: #f3c64f;
+  --choco: #8b5b46;
+  --shadow: rgba(46, 24, 18, 0.24);
+  --shadow-deep: rgba(32, 15, 11, 0.38);
+  --surface: rgba(255, 248, 235, 0.9);
+  --surface-strong: rgba(255, 248, 235, 0.97);
+  --line: rgba(101, 67, 53, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-ink);
+  color: var(--brown-deep);
+  font-family: "NanumGothic", "Apple SD Gothic Neo", sans-serif;
+  overflow: hidden;
+}
+
+button {
+  border: 0;
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.screen {
+  min-height: 100vh;
+}
+
+.scene,
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  inset: -24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.backdrop.is-cafe {
+  background-image: url("/assets/background/cafe.png");
+}
+
+.backdrop.is-progress {
+  background-image: url("/assets/background/progress.png");
+}
+
+.backdrop.is-station {
+  background-image: url("/assets/background/station.png");
+}
+
+.backdrop.is-blurred {
+  filter: blur(10px);
+  transform: scale(1.06);
+}
+
+.hero__shade,
+.scene__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 247, 229, 0.28) 0%, rgba(45, 24, 18, 0.36) 100%);
+}
+
+.hero__shade--soft,
+.scene__shade--soft {
+  background: linear-gradient(180deg, rgba(255, 249, 238, 0.14) 0%, rgba(53, 29, 22, 0.3) 100%);
+}
+
+.scene__shade--warm {
+  background:
+    linear-gradient(180deg, rgba(255, 245, 225, 0.36) 0%, rgba(111, 70, 53, 0.2) 100%),
+    radial-gradient(circle at 50% 18%, rgba(255, 236, 196, 0.36), transparent 42%);
+}
+
+.scene__shade--result {
+  background: linear-gradient(180deg, rgba(255, 247, 229, 0.24) 0%, rgba(63, 34, 26, 0.44) 100%);
+}
+
+.hero__content,
+.selection-layout,
+.progress-layout,
+.player-station-ui {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__content {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.game-title,
+.section-title,
+.player-title {
+  margin: 0;
+  font-family: "NanumGothicExtraBold", "NanumGothicBold", sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.game-title {
+  color: #fff5db;
+  font-size: clamp(3rem, 8vw, 6.6rem);
+  line-height: 1.02;
+  text-shadow:
+    0 5px 0 rgba(107, 63, 44, 0.45),
+    0 18px 34px rgba(36, 18, 11, 0.34);
+}
+
+.game-title--small {
+  font-size: clamp(2.5rem, 6vw, 4.8rem);
+}
+
+.hero__hint,
+.section-copy,
+.final-score {
+  color: var(--cream);
+  font-size: clamp(1rem, 2.1vw, 1.7rem);
+}
+
+.hero__hint {
+  margin-top: 18px;
+  font-family: "NanumGothicBold", sans-serif;
+}
+
+.selection-layout {
+  min-height: 100vh;
+  padding: 56px 48px 48px;
+}
+
+.selection-layout--player {
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.section-title {
+  color: #fff4d9;
+  font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+}
+
+.section-copy {
+  margin: 12px 0 0;
+}
+
+.selection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.selection-grid--player {
+  gap: 18px;
+}
+
+.selection-card {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 26px 20px 24px;
+  border-radius: 34px;
+  background: var(--surface);
+  box-shadow: 0 20px 34px var(--shadow);
+}
+
+.selection-card__art {
+  width: min(20vw, 180px);
+  min-width: 110px;
+}
+
+.selection-card__name {
+  font-family: "NanumGothicBold", sans-serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+}
+
+.selection-card__owner {
+  min-height: 34px;
+  font-size: 1.1rem;
+  color: var(--brown);
+}
+
+.selection-card__button {
+  min-width: 150px;
+}
+
+.selection-footer {
+  display: grid;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.action-button {
+  min-height: 58px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff2c7 0%, #f3c05e 100%);
+  color: var(--brown-deep);
+  font-family: "NanumGothicBold", sans-serif;
+  font-size: 1.15rem;
+  box-shadow: 0 12px 20px rgba(77, 47, 31, 0.22);
+  cursor: pointer;
+}
+
+.action-button--large {
+  min-width: 220px;
+  min-height: 64px;
+  font-size: 1.25rem;
+}
+
+.action-button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.scene--customer,
+.scene--result {
+  cursor: pointer;
+}
+
+.customer-figure {
+  position: absolute;
+  left: 23vw;
+  bottom: 20vh;
+  z-index: 1;
+  width: min(24vw, 300px);
+}
+
+.customer-order {
+  position: absolute;
+  left: 49vw;
+  top: 16vh;
+  z-index: 2;
+}
+
+.order-slip {
+  min-width: 440px;
+  padding: 24px 24px 20px;
+  border-radius: 8px;
+  background: rgba(255, 248, 235, 0.78);
+  box-shadow: 0 18px 28px rgba(55, 33, 26, 0.12);
+}
+
+.order-slip--compact {
+  min-width: 160px;
+  padding: 8px 8px 7px;
+}
+
+.order-slip__items {
+  display: grid;
+  gap: 14px;
+}
+
+.order-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 0;
+  background: transparent;
+  color: var(--brown-deep);
+  text-align: left;
+  box-shadow: none;
+}
+
+.order-item__icon {
+  width: 58px;
+}
+
+.order-item__text {
+  font-family: "NanumGothicBold", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  letter-spacing: -0.03em;
+}
+
+.order-item__label-text,
+.order-item__count-unit {
+  font-family: "NanumGothic", sans-serif;
+  font-weight: 400;
+}
+
+.order-item__count-strong {
+  font-family: "NanumGothicExtraBold", sans-serif;
+  font-weight: 800;
+}
+
+.order-item__check {
+  color: #3e8b54;
+  font-family: "NanumGothicExtraBold", sans-serif;
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+}
+
+.order-item.is-done {
+  opacity: 0.42;
+}
+
+.order-item--icon-number {
+  grid-template-columns: 52px 1fr auto;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.order-item--icon-number .order-item__icon {
+  width: 42px;
+}
+
+.order-item__count-only {
+  font-family: "NanumGothicExtraBold", sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.mini-order {
+  position: absolute;
+  left: 5vw;
+  top: 4vh;
+  z-index: 3;
+  width: 190px;
+}
+
+.progress-layout {
+  min-height: 100vh;
+}
+
+.cake-stage {
+  position: absolute;
+  right: -5vw;
+  top: -15vh;
+  width: min(90vw, 1360px);
+}
+
+.cake-stage__surface {
+  position: relative;
+  aspect-ratio: 1 / 1;
+}
+
+.cake-stage__cake {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 24px rgba(66, 35, 25, 0.22));
+}
+
+.cake-stage__placements {
+  position: absolute;
+  inset: 11% 9% 15%;
+  border-radius: 50%;
+}
+
+.placed-topping {
+  position: absolute;
+  width: 15.8%;
+  min-width: 42px;
+  pointer-events: none;
+}
+
+.progress-turn-label {
+  position: absolute;
+  right: 3.5vw;
+  top: 4vh;
+  z-index: 3;
+  color: #fff6e8;
+  font-family: "NanumGothicBold", sans-serif;
+  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  text-align: right;
+  text-shadow:
+    0 2px 0 rgba(52, 28, 22, 0.72),
+    0 8px 18px rgba(26, 13, 10, 0.48);
+  background: rgba(58, 34, 27, 0.28);
+  padding: 10px 14px;
+  border-radius: 18px;
+}
+
+.player-order-card {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
+.player-order-card .order-slip {
+  width: min(84vw, 440px);
+}
+
+.player-station-ui {
+  position: absolute;
+  left: 3vw;
+  right: 3vw;
+  top: 3vh;
+  bottom: 3vh;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.station-ticket,
+.station-pile,
+.station-finish {
+  pointer-events: auto;
+}
+
+.station-ticket {
+  position: absolute;
+  left: 2vw;
+  top: 7vh;
+  width: 300px;
+}
+
+.station-pile {
+  position: absolute;
+  left: 8.5vw;
+  bottom: 21.6vh;
+  width: 240px;
+  height: 180px;
+}
+
+.station-pile__items {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.tray-piece {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: grab;
+  touch-action: none;
+  z-index: 5;
+}
+
+.tray-piece:active {
+  cursor: grabbing;
+}
+
+.station-finish {
+  position: absolute;
+  right: 0;
+  bottom: 4vh;
+  min-width: 180px;
+}
+
+.drag-ghost {
+  position: fixed;
+  width: 58px;
+  height: 58px;
+  z-index: 1000;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.24));
+}
+
+.result-card {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(180px, 280px) minmax(320px, 520px);
+  align-content: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 0 32px;
+}
+
+.result-card__customer {
+  align-self: end;
+}
+
+.result-card__bubble {
+  padding: 28px 32px;
+  border-radius: 36px;
+  background: rgba(255, 248, 235, 0.95);
+  box-shadow: 0 22px 34px rgba(40, 22, 15, 0.25);
+}
+
+.result-card__message {
+  margin: 0;
+  font-family: "NanumGothicBold", sans-serif;
+  font-size: clamp(1.3rem, 2.1vw, 2rem);
+  line-height: 1.45;
+}
+
+.result-card__message--small {
+  margin-top: 12px;
+  color: var(--brown);
+  font-size: clamp(1rem, 1.7vw, 1.4rem);
+}
+
+.result-stars,
+.final-stars {
+  margin-top: 18px;
+  color: #e3ad2f;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.star {
+  opacity: 0.24;
+}
+
+.star.is-filled {
+  opacity: 1;
+}
+
+.result-wait {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  color: var(--cream);
+  font-family: "NanumGothicBold", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  text-align: center;
+}
+
+.final-score {
+  margin: 14px 0 24px;
+  font-family: "NanumGothicBold", sans-serif;
+}
+
+.missing {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: white;
+}
+
+@media (max-width: 980px) {
+  .selection-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+  }
+
+  .selection-card__art {
+    width: 120px;
+  }
+
+  .customer-figure {
+    left: 7vw;
+    bottom: 16vh;
+    width: 34vw;
+  }
+
+  .customer-order {
+    left: auto;
+    right: 5vw;
+    top: 14vh;
+  }
+
+  .cake-stage {
+    right: 4vw;
+    left: 31vw;
+    width: auto;
+  }
+
+  .station-pile {
+    left: 2vw;
+  }
+
+  .result-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding-top: 10vh;
+  }
+}

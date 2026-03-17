@@ -1,0 +1,9 @@
+{
+  "name": "school02-countcake",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Classroom cake counting game prototype",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
