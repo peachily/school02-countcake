@@ -4,6 +4,8 @@
   "private": true,
   "description": "Classroom cake counting game prototype",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:classroom": "HOST=0.0.0.0 PORT=3000 node server.js",
+    "start:classroom:alt": "HOST=0.0.0.0 PORT=3001 node server.js"
   }
 }
